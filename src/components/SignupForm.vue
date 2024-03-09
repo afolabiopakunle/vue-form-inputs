@@ -24,9 +24,11 @@
         </div>
         <label for="tempSkill">Skills</label>
         <input v-model="tempSkill" type="text" name="tempSkill" id="tempSkill" @keyup="addSkill" required />
-        <span v-for="skill in skills" :key="skill" class="pill">
-            {{ skill + ' ' }}
+        <span v-for="skill in skills" :key="skill" class="pill" @click="removeSkill(skill)">
+            {{ skill }}
         </span>
+
+        <button class="submit">Submit</button>
     </form>
     <div>
         {{ email }} {{ password }} {{ role }} {{ terms }} {{ names }} {{ skills }}
@@ -69,6 +71,10 @@ export default {
                 this.tempSkill = null;
             }
         },
+
+        removeSkill(skillInput) {
+            this.skills = this.skills.filter(skill => skill !== skillInput)
+        }
     },
 }
 </script>
@@ -111,5 +117,32 @@ input[type='checkbox'] {
     position: relative;
     top: 2px;
     left: 8px;
+}
+
+.pill {
+    display: inline-block;
+    margin: 20px 10px 0 0;
+    padding: 6px 12px;
+    background-color: #EEEEEE;
+    border-radius: 20px;
+    font-size: 12px;
+    letter-spacing: 1px;
+    font-weight: bold;
+    color: #777777;
+    cursor: pointer;
+}
+
+button {
+    background-color: #0B6DFF;
+    border: 0;
+    padding: 10px 20px;
+    margin-top: 20px;
+    color: white;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.submit {
+    text-align: center;
 }
 </style>
