@@ -1,10 +1,10 @@
 <template>
-    <form>
+    <form @submit="handleSubmit">
         <label for="email">Email</label>
         <input v-model="email" type="email" name="email" id="email" required />
 
         <label for="password">Password</label>
-        <input v-model="password" type="email" name="password" id="password" required />
+        <input v-model="password" type="password" name="password" id="password" required />
         <label for="role">Role</label>
         <select name="role" id="role" v-model="role">
             <option value="designer">Designer</option>
@@ -74,6 +74,11 @@ export default {
 
         removeSkill(skillInput) {
             this.skills = this.skills.filter(skill => skill !== skillInput)
+        },
+
+        handleSubmit(e) {
+            e.preventDefault();
+            console.log(e);
         }
     },
 }
